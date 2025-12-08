@@ -1,0 +1,5 @@
+/prover_resources/*
+/verifier_resources/*
+
+!*.sh
+!*.ps1

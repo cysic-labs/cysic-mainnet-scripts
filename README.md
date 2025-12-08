@@ -11,3 +11,8 @@ This repo contains the scripts, binary files, and other resources to run the Pro
 
 - Prover: follow the [How to run a prover node](https://docs.cysic.xyz/tutorial-docs/how-to-run-a-prover-node) guide to run the prover node.
 - Verifier: follow the [How to run a verifier node](https://docs.cysic.xyz/tutorial-docs/how-to-run-a-verifier-node) guide to run the verifier node.
+
+# TODO:
+
+- [ ] check the mainnet URL
+- [ ] check the endpint in verifier/prover yaml

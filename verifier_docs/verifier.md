@@ -53,7 +53,7 @@ Before proceeding, ensure your system meets the following requirements:
     ```powershell
     # Replace with your actual reward address
     cd $env:USERPROFILE
-    Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup.ps1" -OutFile "setup_win.ps1"
+    Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_win.ps1" -OutFile "setup_win.ps1"
     .\setup_win.ps1 -CLAIM_REWARD_ADDRESS "0x-Fill-in-your-reward-address-here"
     ```
 
