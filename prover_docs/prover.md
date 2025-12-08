@@ -11,20 +11,37 @@ Contribute your own computational power or purchase a Digital Harvester to suppo
 Before proceeding, ensure your system meets the following minimum requirements:
 - Basic understanding of command-line operations and Linux system administration
 - Hardware specifications:
-  - Random Access Memory (RAM): Minimum 128GB
+  - Random Access Memory (RAM): Minimum 64GB
   - Storage: Minimum 100GB of available disk space
-  - Graphics Processing Unit (GPU): Minimum 24GB VRAM
+  - Graphics Processing Unit (GPU): Minimum 16GB VRAM
+  - Processor: 8 cores CPU with 64-bit architecture
 - Reliable internet connection with stable low-latency access
 - Supported operating system: Linux (Ubuntu 20.04 LTS or compatible distributions recommended)
 
-## 3. Deploying the Prover Node
+## 3. Get Free RPC endpoint used by eth proof
+1. Go the [Alchemy](https://www.alchemy.com/) website to register a free RPC endpoint, sign in or register
+
+    ![alt text](image-9.png)
+
+2. Create a new app
+
+    ![alt text](image-10.png)
+
+3. Got the RPC URL：copy the url
+
+    ![alt text](image-11.png)
+
+## 4. Deploying the Prover Node
 
 1. Launch your terminal application on Linux.
 2. Execute the following command, replacing `0x-Fill-in-your-reward-address-here` with your designated reward address:
 
     ```bash
-    # Replace with your actual reward address
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here
+    # replace 0x-Fill-in-your-reward-address-here to your reward address below
+
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
+
+    cd ~/cysic-prover/ && bash start.sh
     ```
 3. Update the bid price field in the config.yaml file. You can adjust your **bid** price according to your machine price and reward policy to maximize your earnings.
 
@@ -36,9 +53,9 @@ Before proceeding, ensure your system meets the following minimum requirements:
     cd ~/cysic-Prover && bash start.sh
     ```
 
-## 4. Post-Deployment Configuration
+## 5. Post-Deployment Configuration
 
-### 4.1 Prover Node Initialization Output
+### 5.1 Prover Node Initialization Output
 
 Upon successful startup of the Prover Node using the `start.sh` script, you will observe terminal output similar to the following:
 
@@ -76,7 +93,7 @@ Upon successful startup of the Prover Node using the `start.sh` script, you will
 {"code":0,"message":"your current worker address is: 0x3A15e5A7c4301a25Ce04025B523AaC792A593775","respType":0,"data":null}
 ```
 
-### 4.2 Critical Post-Deployment Steps
+### 5.2 Critical Post-Deployment Steps
 
 After starting the Prover Node, complete the following mandatory steps:
 
@@ -84,7 +101,7 @@ After starting the Prover Node, complete the following mandatory steps:
 
 2. **Node Registration**: Proceed to the Cysic Mainnet Website to reserve CYS tokens for your worker node, enabling it to participate in proof generation tasks.
 
-### 4.3 Reserving CYS for Your Worker Node
+### 5.3 Reserving CYS for Your Worker Node
 
 To activate your Prover Node, follow these steps to reserve CYS tokens:
 
