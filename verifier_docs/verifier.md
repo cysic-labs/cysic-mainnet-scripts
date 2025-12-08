@@ -20,7 +20,7 @@ Before proceeding, ensure your system meets the following requirements:
 
     ```bash
     # Replace with your actual reward address
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_linux.sh > ~/setup_linux.sh && bash ~/setup_linux.sh 0x-Fill-in-your-reward-address-here
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_linux.sh > ~/setup_linux.sh && bash ~/setup_linux.sh 0x5fb5B19A41a6F603F54720C8aF987E488Ca97ca4
     ```
 
 3. Start the Verifier Node service:
@@ -37,6 +37,8 @@ Before proceeding, ensure your system meets the following requirements:
     ```bash
     # Replace with your actual reward address
     curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x-Fill-in-your-reward-address-here
+
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x5fb5B19A41a6F603F54720C8aF987E488Ca97ca4
     ```
 
 3. Initiate the Verifier Node service:
@@ -83,6 +85,8 @@ Upon successful startup of the Verifier Node using the `start.sh` script, you wi
 2025/12/07 10:02:42 received message:  {"code":0,"message":"your current worker address is: 0x70054B7BC1a25D3fff3eE9A95Cb13CD611009D2d","respType":0,"data":null}
 
 2025/12/07 10:02:42 received message:  {"code":0,"message":"","respType":1,"data":"eyJoZWFydGJlYXREdXJhdGlvbiI6MTV9Cg=="}
+
+2025/12/07 10:04:46 received message:  {"code":0,"message":"please Reserve first","respType":0,"data":null}
 ```
 
 ### 4.2 Critical Post-Deployment Steps
