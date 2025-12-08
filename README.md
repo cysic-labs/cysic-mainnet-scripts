@@ -14,5 +14,6 @@ This repo contains the scripts, binary files, and other resources to run the Pro
 
 # TODO:
 
-- [ ] check the mainnet URL
+- [x] check the mainnet URL
 - [ ] check the endpint in verifier/prover yaml
+- [ ] update the binary to latest version
