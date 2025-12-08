@@ -2,8 +2,10 @@
 
 This repo contains the scripts, binary files, and other resources to run the Prover/Verifier for Cysic Mainnet.
 
-- The prover related files is under `prover_resources` folder.
-- The verifier related files is under `verifier_resources` folder.
+- The prover related resources is under `prover_resources` folder.
+- The verifier related resources is under `verifier_resources` folder.
+- The prover docs is under `prover_docs` folder.
+- The verifier docs is under `verifier_docs` folder.
 
 # How to run
 
