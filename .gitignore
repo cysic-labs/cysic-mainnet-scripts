@@ -1,5 +1,7 @@
 /prover_resources/*
 /verifier_resources/*
+/github_release/
+sha256sum.txt
 
 !*.sh
 !*.ps1
