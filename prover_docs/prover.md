@@ -2,9 +2,7 @@
 
 ## 1. Overview
 
-> BECOME A CYSIC PROVER AND EARN CYS & CGT. 
-
-Contribute your own computational power or purchase a Digital Harvester to support ZK proofs and earn rewards now!
+ZK prover nodes are one of the critical roles in Cysic Network. Their job is to generate ZK proofs of various kinds, assigned by our partners and obtain Cysic Network credits as the rewards. Operating a prover node requires a solid understanding of DevOps and high-performance hardware. 
 
 ## 2. Prerequisites
 
@@ -16,7 +14,7 @@ Before proceeding, ensure your system meets the following minimum requirements:
   - Graphics Processing Unit (GPU): Minimum 16GB VRAM
   - Processor: 8 cores CPU with 64-bit architecture
 - Reliable internet connection with stable low-latency access
-- Supported operating system: Linux (Ubuntu 20.04 LTS or compatible distributions recommended)
+- Supported operating system: Linux (Ubuntu 24.04 LTS or compatible distributions recommended)
 
 ## 3. Get Free RPC endpoint used by eth proof
 1. Go the [Alchemy](https://www.alchemy.com/) website to register a free RPC endpoint, sign in or register
