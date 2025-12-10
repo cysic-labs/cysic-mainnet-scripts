@@ -25,15 +25,15 @@ curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1
 cat <<EOF >~/cysic-prover/config.yaml
 chain:
   # node grpc url
-  endpoint: "dev-node-cosmos-3edd687c9be40748.elb.ap-southeast-1.amazonaws.com:9090"
+  endpoint: "grpc01.prover.xyz:9090"
   # chain id, don't modify this
-  chain_id: "cysicmint_9000-1"
+  chain_id: "cysicmint_4399-1"
   # chain gas coin, don't modify this
   gas_coin: "CYS"
   # gas price, don't modify this
   gas_price: 10
   # gas limit, default: 100000000
-  gas_limit: 100000000
+  gas_limit: 250000000000
 
 ######################
 #   local  setting   #
@@ -53,7 +53,7 @@ bid: "0.1"
 ######################
 server:
   # cysic server endpoint
-  cysic_endpoint: "https://api-dev.prover.xyz"
+  cysic_endpoint: "https://api.prover.xyz"
 
 ######################
 #   task  setting   #

@@ -20,14 +20,13 @@ curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1
 cat <<EOF >~/cysic-verifier/config.yaml
 chain:
   # node grpc url
-  endpoint: "dev-node-cosmos-3edd687c9be40748.elb.ap-southeast-1.amazonaws.com:9090"
-  #  endpoint: "grpc-testnet.prover.xyz:80"
+  endpoint: "grpc01.prover.xyz:9090"
   # chain id, don't modify this
-  chain_id: "cysicmint_9000-1"
+  chain_id: "cysicmint_4399-1"
   # chain gas coin, don't modify this
   gas_coin: "CYS"
   # gas price, don't modify this
-  gas_price: 10
+  gas_price: 250000000000
 
 #######################
 #  verifier  setting  #
@@ -40,8 +39,8 @@ claim_reward_address: "$CLAIM_REWARD_ADDRESS"
 ######################
 server:
   # don't modify this
-  cysic_endpoint: "https://api-dev.prover.xyz"
-  verify_endpoint: "http://13.212.109.39:50051"
+  cysic_endpoint: "https://api.prover.xyz"
+  verify_endpoint: "https://checkproof01.prover.xyz:50051"
   env_chain_id: 534352
 EOF
 
