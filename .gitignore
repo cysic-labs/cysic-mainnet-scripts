@@ -5,3 +5,4 @@ sha256sum.txt
 
 !*.sh
 !*.ps1
+.DS_Store

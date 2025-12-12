@@ -20,6 +20,7 @@ curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp.so > ~/cysic-prover/librsp.so
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/eth_dependency.sh > ~/cysic-prover/eth_dependency.sh
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/imetadata.bin >~/cysic-prover/imetadata.bin
 
 # 第二段命令：创建配置文件
 cat <<EOF >~/cysic-prover/config.yaml
@@ -31,9 +32,9 @@ chain:
   # chain gas coin, don't modify this
   gas_coin: "CYS"
   # gas price, don't modify this
-  gas_price: 10
+  gas_price: 250000000000
   # gas limit, default: 100000000
-  gas_limit: 250000000000
+  gas_limit: 300000
 
 ######################
 #   local  setting   #
