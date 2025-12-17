@@ -2,8 +2,8 @@
 
 # 检查是否传入了参数
 if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <claim_reward_address> <eth_proof_endpoint>"
-    exit 1
+  echo "Usage: $0 <claim_reward_address> <eth_proof_endpoint>"
+  exit 1
 fi
 
 CLAIM_REWARD_ADDRESS=$1
@@ -14,11 +14,11 @@ rm -rf ~/cysic-prover
 cd ~
 mkdir cysic-prover
 
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/prover_linux > ~/cysic-prover/prover
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libdarwin_prover.so > ~/cysic-prover/libzkp.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libcysnet_monitor.so > ~/cysic-prover/libcysnet_monitor.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp.so > ~/cysic-prover/librsp.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/eth_dependency.sh > ~/cysic-prover/eth_dependency.sh
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/prover_linux >~/cysic-prover/prover
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libdarwin_prover.so >~/cysic-prover/libzkp.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libcysnet_monitor.so >~/cysic-prover/libcysnet_monitor.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp_prover.so >~/cysic-prover/librsp.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/eth_dependency.sh >~/cysic-prover/eth_dependency.sh
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/imetadata.bin >~/cysic-prover/imetadata.bin
 
@@ -87,14 +87,15 @@ chmod +x ~/cysic-prover/start.sh
 read -p "do you want to setup the software env for eth proof, this will install sp1, cuda driver and docker for you. (y/n): " choice
 case "$choice" in
 y | Y)
-    bash eth_dependency.sh
-    ;;
+  bash eth_dependency.sh
+  ;;
 n | N)
-    echo "skip to run the eth_dependency.sh"
-    ;;
+  echo "skip to run the eth_dependency.sh"
+  ;;
 *)
-    echo "invalid choice input eth_dependency.sh"
-    ;;
+  echo "invalid choice input eth_dependency.sh"
+  ;;
 esac
 
 echo "Cysic prover setup is complete. Run ./start.sh to start the prover."
+

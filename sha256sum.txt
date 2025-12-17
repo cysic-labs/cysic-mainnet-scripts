@@ -16,7 +16,8 @@ library and program used for cysnet mainnet, version v1.0.0
 |setup_mac.sh                                                 | 757f50aba040b0635eb39c168a52672fa5595663900aef9ec2ede3c8a2295bba|
 |libzkp.dll                                                   | 553321608ec04d8f9806485d23809f51a3a42756e5b4683a5c5e9a8a566c904f|
 |verifier-linux                                               | 57da11d3238afe2781f707abe444c424c512ee36fdf2977c12b1b2c467b72690|
-|setup_prover.sh                                              | c29a561b7b1c22e95988a68d289c595988f3c20bf4753fd010f7754d8a2b32c5|
+|setup_prover.sh                                              | b8cbf6023b9ee87ccbcbb8fbc1543a3bf58c1fbc5f98bf6c7e000de539faf4fb|
+|librsp_prover.so                                             | 525ce48a52306c03440acafc9d9accabbefcb79f3202abd1cb4d3320adee72b7|
 |host_cuda_prover                                             | 1108ed642fafecf27d221156c5f1cedf8612d24162b3814fce0d2266d59a5fbe|
 |imetadata.bin                                                | 1216842027408dbf831b76d1d9b23097d8c3328466e98fbbb23d6481304dae40|
 |libcysnet_monitor.so                                         | 11a226943c33c1adff9922d0734f720ea5c28c9085b57bc4c87b6c949b5152d7|
