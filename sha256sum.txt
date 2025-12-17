@@ -6,7 +6,7 @@ library and program used for cysnet mainnet, version v1.0.0
 |setup_linux.sh                                               | e2dfabc39fc995ec5d8524e9a86e655907d4e8d24da4532a32f05592f5f00308|
 |librsp.dylib                                                 | d90ea167c8970b885923988e8fc4ab71afb9d9f93c89dbac25b97d996202bfc4|
 |libdarwin_verifier.so                                        | 2c6b0e2e59fcd9093680a550b687afbefc58007c7e3055f401bfebb098eab642|
-|prover_linux                                                 | 067a1a4b39cfc0cf7cadd7832032be2bbdb4e6eeda11af1a0151a740f80be96b|
+|prover_linux                                                 | 445d2522748ba72df35b0628ad7883d421a90788155e8503e4c5959bb8ea8693|
 |libzkp.dylib                                                 | b4ca1f8d704f0c23fea18faf7022ed26a588d89698ee4f5650b42649ea51e639|
 |run_win.ps1                                                  | d2de56508940ed830d2d8dfbbdbfc0b979de73b1c03defc0df2047cca25bc052|
 |setup_win.ps1                                                | 206879bde56fd4bec6d5f2415fc8b9a4156be98f4cecfc64389028ca3249189d|
@@ -18,7 +18,7 @@ library and program used for cysnet mainnet, version v1.0.0
 |verifier-linux                                               | 57da11d3238afe2781f707abe444c424c512ee36fdf2977c12b1b2c467b72690|
 |setup_prover.sh                                              | b8cbf6023b9ee87ccbcbb8fbc1543a3bf58c1fbc5f98bf6c7e000de539faf4fb|
 |librsp_prover.so                                             | 525ce48a52306c03440acafc9d9accabbefcb79f3202abd1cb4d3320adee72b7|
-|host_cuda_prover                                             | 1108ed642fafecf27d221156c5f1cedf8612d24162b3814fce0d2266d59a5fbe|
+|host_cuda_prover                                             | 1e34c3505a5cf346ccac9e20d84b8553c9a76ef0a30e0fd1216c540fafad8bf1|
 |imetadata.bin                                                | 1216842027408dbf831b76d1d9b23097d8c3328466e98fbbb23d6481304dae40|
 |libcysnet_monitor.so                                         | 11a226943c33c1adff9922d0734f720ea5c28c9085b57bc4c87b6c949b5152d7|
 |rsp.dll                                                      | 84c1cfab43fe989fbbe15397c2f47420eccdb67f5320a6bb826747e832c12d86|
