@@ -1,0 +1,27 @@
+library and program used for cysnet mainnet, version v1.0.0
+|文件名 | sha256sum|
+|- | -|
+|librsp.so                                                    | 04a77b1f034ff1f002e2c6083b97a55254842e613068b60f47adc15174a584b7|
+|verifier_win_x86_64.exe                                      | e9be224bb3356c31811fb2078b09f4cd168e9a85604d8bc91d54a8495df35659|
+|setup_linux.sh                                               | e2dfabc39fc995ec5d8524e9a86e655907d4e8d24da4532a32f05592f5f00308|
+|librsp.dylib                                                 | d90ea167c8970b885923988e8fc4ab71afb9d9f93c89dbac25b97d996202bfc4|
+|libdarwin_verifier.so                                        | 2c6b0e2e59fcd9093680a550b687afbefc58007c7e3055f401bfebb098eab642|
+|moongate-server                                              | 1108ed642fafecf27d221156c5f1cedf8612d24162b3814fce0d2266d59a5fbe|
+|prover_linux                                                 | 067a1a4b39cfc0cf7cadd7832032be2bbdb4e6eeda11af1a0151a740f80be96b|
+|libzkp.dylib                                                 | b4ca1f8d704f0c23fea18faf7022ed26a588d89698ee4f5650b42649ea51e639|
+|run_win.ps1                                                  | d2de56508940ed830d2d8dfbbdbfc0b979de73b1c03defc0df2047cca25bc052|
+|setup_win.ps1                                                | 206879bde56fd4bec6d5f2415fc8b9a4156be98f4cecfc64389028ca3249189d|
+|librsp_intel.dylib                                           | 0bf76cf74d9e4fd10faea01492e94b3e4e00848362576ed91273997303aaee75|
+|eth_dependency.sh                                            | 46003ad1b39e6b259b945e2a86128cb070117d9cfcf05ee0f404e91ba2f574fa|
+|verifier-mac                                                 | 2aba299a77c4d37c174d6d5d31e2d1a57f758579abf3431e88b22eed7654145d|
+|setup_mac.sh                                                 | 757f50aba040b0635eb39c168a52672fa5595663900aef9ec2ede3c8a2295bba|
+|libzkp.dll                                                   | 553321608ec04d8f9806485d23809f51a3a42756e5b4683a5c5e9a8a566c904f|
+|verifier-linux                                               | 57da11d3238afe2781f707abe444c424c512ee36fdf2977c12b1b2c467b72690|
+|setup_prover.sh                                              | c29a561b7b1c22e95988a68d289c595988f3c20bf4753fd010f7754d8a2b32c5|
+|imetadatacmt.bin                                             | 10dd78b5d810c9cd68941e24605127584d7b0b09d856ab9e47043d84a4a97ec0|
+|host_cuda_prover                                             | f7a9d7409cc2fd03bcd2b63f5f032109473efd0aef87315c764b95d5958a5c87|
+|imetadata.bin                                                | 1216842027408dbf831b76d1d9b23097d8c3328466e98fbbb23d6481304dae40|
+|libcysnet_monitor.so                                         | 11a226943c33c1adff9922d0734f720ea5c28c9085b57bc4c87b6c949b5152d7|
+|rsp.dll                                                      | 84c1cfab43fe989fbbe15397c2f47420eccdb67f5320a6bb826747e832c12d86|
+|libdarwin_prover.so                                          | 0e81563cd7d3ee0579e11c6a1e3a1bfc4cfe2dc957abf488926677b2c6b60ee9|
+|libzkp_intel.dylib                                           | 425edce2d2412c703b2350f5a43ce5659df1d2f92bd1e84dd024da23a4d972a8|
