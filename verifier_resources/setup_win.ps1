@@ -45,7 +45,7 @@ claim_reward_address: "$CLAIM_REWARD_ADDRESS"
 server:
   # don't modify this
   cysic_endpoint: "https://api.prover.xyz"
-  verify_endpoint: "https://checkproof01.prover.xyz:50051"
+  verify_endpoint: "https://checkproof01.prover.xyz"
   env_chain_id: 534352
 "@
 
