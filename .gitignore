@@ -1,6 +1,7 @@
 /prover_resources/*
 /verifier_resources/*
 /github_release/
+/temp_bin/*
 
 !*.sh
 !*.ps1
