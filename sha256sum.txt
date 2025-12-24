@@ -12,11 +12,10 @@ library and program used for cysnet mainnet, version v1.0.0
 |run_win.ps1                                                  | d2de56508940ed830d2d8dfbbdbfc0b979de73b1c03defc0df2047cca25bc052|
 |setup_win.ps1                                                | 79b27d0558c3c14099ea8b57ff6b6c101afd889e8b170eb980d9cad8415779eb|
 |librsp_intel.dylib                                           | 0bf76cf74d9e4fd10faea01492e94b3e4e00848362576ed91273997303aaee75|
+|verifier_mac                                                 | 2aba299a77c4d37c174d6d5d31e2d1a57f758579abf3431e88b22eed7654145d|
 |eth_dependency.sh                                            | 46003ad1b39e6b259b945e2a86128cb070117d9cfcf05ee0f404e91ba2f574fa|
-|verifier-mac                                                 | 2aba299a77c4d37c174d6d5d31e2d1a57f758579abf3431e88b22eed7654145d|
 |setup_mac.sh                                                 | bddb22607e4aec23d6ff8553f8029bfb919eea6596982ab95e808b9843b49669|
 |libzkp.dll                                                   | 553321608ec04d8f9806485d23809f51a3a42756e5b4683a5c5e9a8a566c904f|
-|verifier-linux                                               | 57da11d3238afe2781f707abe444c424c512ee36fdf2977c12b1b2c467b72690|
 |setup_prover.sh                                              | a010287c37b49433f5502a9116b6547640ff822c1809f7309caec085c75191da|
 |librsp_prover.so                                             | 525ce48a52306c03440acafc9d9accabbefcb79f3202abd1cb4d3320adee72b7|
 |host_cuda_prover                                             | 1e34c3505a5cf346ccac9e20d84b8553c9a76ef0a30e0fd1216c540fafad8bf1|
@@ -24,4 +23,5 @@ library and program used for cysnet mainnet, version v1.0.0
 |libcysnet_monitor.so                                         | 11a226943c33c1adff9922d0734f720ea5c28c9085b57bc4c87b6c949b5152d7|
 |rsp.dll                                                      | 84c1cfab43fe989fbbe15397c2f47420eccdb67f5320a6bb826747e832c12d86|
 |libdarwin_prover.so                                          | 0e81563cd7d3ee0579e11c6a1e3a1bfc4cfe2dc957abf488926677b2c6b60ee9|
+|verifier_linux                                               | 57da11d3238afe2781f707abe444c424c512ee36fdf2977c12b1b2c467b72690|
 |libzkp_intel.dylib                                           | 425edce2d2412c703b2350f5a43ce5659df1d2f92bd1e84dd024da23a4d972a8|
