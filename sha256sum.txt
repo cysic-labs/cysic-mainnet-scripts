@@ -3,6 +3,7 @@ library and program used for cysnet mainnet, version v1.0.0
 |- | -|
 |librsp.so                                                    | 04a77b1f034ff1f002e2c6083b97a55254842e613068b60f47adc15174a584b7|
 |verifier_win_x86_64.exe                                      | e9be224bb3356c31811fb2078b09f4cd168e9a85604d8bc91d54a8495df35659|
+|reward_address_decryptor_win.ps1                             | 1bcb8cfc2632f0d333790a9d87401e79c2365b540bd463381a75b30b52f67fdd|
 |setup_linux.sh                                               | 62b10c4ad8ae3e02cc273044e720c2065dd75223603a2ae30508c7fe47011df8|
 |librsp.dylib                                                 | d90ea167c8970b885923988e8fc4ab71afb9d9f93c89dbac25b97d996202bfc4|
 |libdarwin_verifier.so                                        | 2c6b0e2e59fcd9093680a550b687afbefc58007c7e3055f401bfebb098eab642|
@@ -14,8 +15,14 @@ library and program used for cysnet mainnet, version v1.0.0
 |librsp_intel.dylib                                           | 0bf76cf74d9e4fd10faea01492e94b3e4e00848362576ed91273997303aaee75|
 |verifier_mac                                                 | 2aba299a77c4d37c174d6d5d31e2d1a57f758579abf3431e88b22eed7654145d|
 |eth_dependency.sh                                            | 46003ad1b39e6b259b945e2a86128cb070117d9cfcf05ee0f404e91ba2f574fa|
+|reward_address_decryptor_mac.sh                              | 17da0a00828101b01ed7203319572fa98fbb92a656ded35ded07f4551b280bc4|
 |setup_mac.sh                                                 | bddb22607e4aec23d6ff8553f8029bfb919eea6596982ab95e808b9843b49669|
 |libzkp.dll                                                   | 553321608ec04d8f9806485d23809f51a3a42756e5b4683a5c5e9a8a566c904f|
+|decryptor_win                                                | bcd0154da7590e4120d329d9f8a0a8c9079bec3759db7ee61deb9530943b9e96|
+|decryptor_linux                                              | 6678a521ebc9f6f1340772c257e0f8da0e85b23aec728b073565a2c9d31a3e9e|
+|reward_address_decryptor_linux.sh                            | 27e596fc8474a0b8aa7a5170339d8ac8cdfe509f929a1cc8350bc8c10d8dce47|
+|reward_address_decryptor_prover.sh                           | 9865be0b374fb79e3b34db5df5db2b3af25339c09c24db996a16dfd720711e9b|
+|decryptor_mac                                                | 34cdc30895c821822022f0786e06e32ab894b7dc436585cc36f1a7a3cfcf1c1b|
 |setup_prover.sh                                              | a010287c37b49433f5502a9116b6547640ff822c1809f7309caec085c75191da|
 |librsp_prover.so                                             | 525ce48a52306c03440acafc9d9accabbefcb79f3202abd1cb4d3320adee72b7|
 |host_cuda_prover                                             | 1e34c3505a5cf346ccac9e20d84b8553c9a76ef0a30e0fd1216c540fafad8bf1|
