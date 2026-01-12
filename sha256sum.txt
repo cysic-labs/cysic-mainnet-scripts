@@ -8,7 +8,7 @@ library and program used for cysnet mainnet, version v1.0.0
 |librsp.dylib                                                 | d90ea167c8970b885923988e8fc4ab71afb9d9f93c89dbac25b97d996202bfc4|
 |libdarwin_verifier.so                                        | 2c6b0e2e59fcd9093680a550b687afbefc58007c7e3055f401bfebb098eab642|
 |moongate-server                                              | 3b7d593598d36e72d73896c09e3d463e1e7ee3eb508c334c2ecb0f22742f536a|
-|prover_linux                                                 | 445d2522748ba72df35b0628ad7883d421a90788155e8503e4c5959bb8ea8693|
+|prover_linux                                                 | 7aa35cab660c8e8c178bc795cb407cbcd42eea01d1b60dfcd0b40ea61f13bc4a|
 |libzkp.dylib                                                 | b4ca1f8d704f0c23fea18faf7022ed26a588d89698ee4f5650b42649ea51e639|
 |run_win.ps1                                                  | d2de56508940ed830d2d8dfbbdbfc0b979de73b1c03defc0df2047cca25bc052|
 |setup_win.ps1                                                | 79b27d0558c3c14099ea8b57ff6b6c101afd889e8b170eb980d9cad8415779eb|
