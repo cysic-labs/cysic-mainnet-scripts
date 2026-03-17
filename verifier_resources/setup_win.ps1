@@ -28,10 +28,8 @@ chain:
   chain_id: "cysicmint_4399-1"
   # chain gas coin, don't modify this
   gas_coin: "CYS"
-  # gas price, don't modify this
-  gas_price: 250000000000
-  # gas limit, default: 100000000
-  gas_limit: 300000
+  gas_price: 1000000000
+  gas_limit: 500000
 
 #######################
 #  verifier  setting  #
