@@ -6,3 +6,4 @@
 !*.sh
 !*.ps1
 .DS_Store
+run_reward_decryptor_all.sh

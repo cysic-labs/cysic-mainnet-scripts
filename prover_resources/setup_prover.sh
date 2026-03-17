@@ -14,7 +14,7 @@ rm -rf ~/cysic-prover
 cd ~
 mkdir cysic-prover
 
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/prover_linux >~/cysic-prover/prover
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.1/prover_linux >~/cysic-prover/prover
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libdarwin_prover.so >~/cysic-prover/libzkp.so
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libcysnet_monitor.so >~/cysic-prover/libcysnet_monitor.so
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp_prover.so >~/cysic-prover/librsp.so
@@ -23,18 +23,18 @@ curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1
 
 # Detect GPU and download appropriate binary
 echo "Detecting GPU..."
-if command -v nvidia-smi &> /dev/null; then
-    GPU_INFO=$(nvidia-smi --query-gpu=name --format=csv,noheader)
-    if [[ "$GPU_INFO" == *"5090"* ]]; then
-        echo "NVIDIA RTX 5090 detected. Using moongate-server."
-        curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/moongate-server >~/cysic-prover/host_cuda_prover
-    else
-        echo "Other NVIDIA GPU detected: $GPU_INFO. Using host_cuda_prover."
-        curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
-    fi
-else
-    echo "No NVIDIA GPU detected or nvidia-smi not found. Using host_cuda_prover by default."
+if command -v nvidia-smi &>/dev/null; then
+  GPU_INFO=$(nvidia-smi --query-gpu=name --format=csv,noheader)
+  if [[ "$GPU_INFO" == *"5090"* ]]; then
+    echo "NVIDIA RTX 5090 detected. Using moongate-server."
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/moongate-server >~/cysic-prover/host_cuda_prover
+  else
+    echo "Other NVIDIA GPU detected: $GPU_INFO. Using host_cuda_prover."
     curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
+  fi
+else
+  echo "No NVIDIA GPU detected or nvidia-smi not found. Using host_cuda_prover by default."
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
 fi
 
 # 第二段命令：创建配置文件
@@ -113,4 +113,3 @@ n | N)
 esac
 
 echo "Cysic prover setup is complete. Run ./start.sh to start the prover."
-

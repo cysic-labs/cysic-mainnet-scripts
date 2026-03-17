@@ -1,4 +1,4 @@
-# (Optional) Convert Reward Address to Private Key
+# # (Optional) Convert Reward Address to Private Key
 
 > **Warning:** Below command can convert the verifier reward address key file to private key.
 > 
