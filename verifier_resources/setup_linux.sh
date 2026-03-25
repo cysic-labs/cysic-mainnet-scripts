@@ -12,9 +12,9 @@ CLAIM_REWARD_ADDRESS=$1
 rm -rf ~/cysic-verifier
 cd ~
 mkdir cysic-verifier
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/verifier_linux >~/cysic-verifier/verifier
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libdarwin_verifier.so >~/cysic-verifier/libdarwin_verifier.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp.so >~/cysic-verifier/librsp.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/verifier_linux >~/cysic-verifier/verifier
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libdarwin_verifier.so >~/cysic-verifier/libdarwin_verifier.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/librsp.so >~/cysic-verifier/librsp.so
 
 # 第二段命令：创建配置文件
 cat <<EOF >~/cysic-verifier/config.yaml

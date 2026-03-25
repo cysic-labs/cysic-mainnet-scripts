@@ -15,14 +15,14 @@ mkdir cysic-verifier
 if [[ $(uname -m) == "x86_64" ]]; then
   # Intel chip
   # M series chip
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/verifier_mac_intel >~/cysic-verifier/verifier_mac
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libzkp_intel.dylib >~/cysic-verifier/libzkp.dylib
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp_intel.dylib >~/cysic-verifier/librsp.dylib
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/verifier_mac_intel >~/cysic-verifier/verifier_mac
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libzkp_intel.dylib >~/cysic-verifier/libzkp.dylib
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/librsp_intel.dylib >~/cysic-verifier/librsp.dylib
 else
   # M series chip
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/verifier_mac >~/cysic-verifier/verifier_mac
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libzkp.dylib >~/cysic-verifier/libzkp.dylib
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp.dylib >~/cysic-verifier/librsp.dylib
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/verifier_mac >~/cysic-verifier/verifier_mac
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libzkp.dylib >~/cysic-verifier/libzkp.dylib
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/librsp.dylib >~/cysic-verifier/librsp.dylib
 fi
 
 # 第二段命令：创建配置文件

@@ -9,7 +9,7 @@ Run Below command according to your operating system:
 1. Linux: 
    ```bash
    cd ~/cysic-verifier
-   curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/reward_address_decryptor_linux.sh > reward_address_decryptor_linux.sh
+   curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/reward_address_decryptor_linux.sh > reward_address_decryptor_linux.sh
    bash reward_address_decryptor_linux.sh
    ```
 
@@ -17,14 +17,14 @@ Run Below command according to your operating system:
 
    ```bash
    cd ~/cysic-verifier
-   curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/reward_address_decryptor_mac.sh > reward_address_decryptor_mac.sh
+   curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/reward_address_decryptor_mac.sh > reward_address_decryptor_mac.sh
    bash reward_address_decryptor_mac.sh
    ```
 
 3. Windows: 
    ```ps1
    cd $env:USERPROFILE\cysic-verifier
-   Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/reward_address_decryptor_win.ps1" -OutFile "reward_address_decryptor_win.ps1"
+   Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/reward_address_decryptor_win.ps1" -OutFile "reward_address_decryptor_win.ps1"
    .\reward_address_decryptor_win.ps1
    ```
 
@@ -56,7 +56,7 @@ reward address: 0x6e1fC643be3fDBeA1d80BA7e6E373491246E60D6
 
 ```bash
 cd ~/cysic-prover
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/reward_address_decryptor_prover.sh > reward_address_decryptor_prover.sh
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/reward_address_decryptor_prover.sh > reward_address_decryptor_prover.sh
 bash reward_address_decryptor_prover.sh
 ```
 Above command will do the following task:

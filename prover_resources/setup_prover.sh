@@ -14,12 +14,13 @@ rm -rf ~/cysic-prover
 cd ~
 mkdir cysic-prover
 
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.1/prover_linux >~/cysic-prover/prover
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libdarwin_prover.so >~/cysic-prover/libzkp.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libcysnet_monitor.so >~/cysic-prover/libcysnet_monitor.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/librsp_prover.so >~/cysic-prover/librsp.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/eth_dependency.sh >~/cysic-prover/eth_dependency.sh
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/imetadata.bin >~/cysic-prover/imetadata.bin
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/prover_linux >~/cysic-prover/prover
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libdarwin_prover.so >~/cysic-prover/libzkp.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libcysnet_monitor.so >~/cysic-prover/libcysnet_monitor.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/librsp_prover.so >~/cysic-prover/librsp.so
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/eth_dependency.sh >~/cysic-prover/eth_dependency.sh
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/install_and_run_prover0.sh >~/cysic-prover/install_and_run_prover0.sh
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/imetadata.bin >~/cysic-prover/imetadata.bin
 
 # Detect GPU and download appropriate binary
 echo "Detecting GPU..."
@@ -27,14 +28,14 @@ if command -v nvidia-smi &>/dev/null; then
   GPU_INFO=$(nvidia-smi --query-gpu=name --format=csv,noheader)
   if [[ "$GPU_INFO" == *"5090"* ]]; then
     echo "NVIDIA RTX 5090 detected. Using moongate-server."
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/moongate-server >~/cysic-prover/host_cuda_prover
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/moongate-server >~/cysic-prover/host_cuda_prover
   else
     echo "Other NVIDIA GPU detected: $GPU_INFO. Using host_cuda_prover."
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/host_cuda_prover >~/cysic-prover/host_cuda_prover
   fi
 else
   echo "No NVIDIA GPU detected or nvidia-smi not found. Using host_cuda_prover by default."
-  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/host_cuda_prover >~/cysic-prover/host_cuda_prover
+  curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/host_cuda_prover >~/cysic-prover/host_cuda_prover
 fi
 
 # 第二段命令：创建配置文件
@@ -95,11 +96,12 @@ EOF
 cd ~/cysic-prover/
 chmod +x ~/cysic-prover/prover
 chmod +x ~/cysic-prover/host_cuda_prover
+chmod +x ~/cysic-prover/install_and_run_prover0.sh
 echo "SP1_PROVER=cuda LD_LIBRARY_PATH=. CHAIN_ID=534352 ./prover" >~/cysic-prover/start.sh
 chmod +x ~/cysic-prover/start.sh
 
 # 询问用户是否运行 eth_dependency.sh
-read -p "do you want to setup the software env for eth proof, this will install sp1, cuda driver and docker for you. (y/n): " choice
+read -p "do you want to setup the software env for eth proof, this will install sp1 for you. (y/n): " choice
 case "$choice" in
 y | Y)
   bash eth_dependency.sh
@@ -111,5 +113,8 @@ n | N)
   echo "invalid choice input eth_dependency.sh"
   ;;
 esac
+
+echo "Starting prover0 setup..."
+ETH_PROOF_ENDPOINT="$ETH_PROOF_ENDPOINT" bash ~/cysic-prover/install_and_run_prover0.sh
 
 echo "Cysic prover setup is complete. Run ./start.sh to start the prover."

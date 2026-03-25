@@ -37,7 +37,7 @@ Before proceeding, ensure your system meets the following minimum requirements:
     ```bash
     # replace 0x-Fill-in-your-reward-address-here to your reward address below
 
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/setup_prover.sh > ~/setup_prover.sh && bash ~/setup_prover.sh 0x-Fill-in-your-reward-address-here Your_RPC_URL
 
     cd ~/cysic-prover/ && bash start.sh
     ```

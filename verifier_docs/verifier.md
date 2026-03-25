@@ -20,7 +20,7 @@ Before proceeding, ensure your system meets the following requirements:
 
     ```bash
     # Replace with your actual reward address
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_linux.sh > ~/setup_linux.sh && bash ~/setup_linux.sh 0x5fb5B19A41a6F603F54720C8aF987E488Ca97ca4
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/setup_linux.sh > ~/setup_linux.sh && bash ~/setup_linux.sh 0x5fb5B19A41a6F603F54720C8aF987E488Ca97ca4
     ```
 
 3. Start the Verifier Node service:
@@ -36,9 +36,9 @@ Before proceeding, ensure your system meets the following requirements:
 
     ```bash
     # Replace with your actual reward address
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x-Fill-in-your-reward-address-here
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x-Fill-in-your-reward-address-here
 
-    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x5fb5B19A41a6F603F54720C8aF987E488Ca97ca4
+    curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/setup_mac.sh > ~/setup_mac.sh && bash ~/setup_mac.sh 0x5fb5B19A41a6F603F54720C8aF987E488Ca97ca4
     ```
 
 3. Initiate the Verifier Node service:
@@ -55,7 +55,7 @@ Before proceeding, ensure your system meets the following requirements:
     ```powershell
     # Replace with your actual reward address
     cd $env:USERPROFILE
-    Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/setup_win.ps1" -OutFile "setup_win.ps1"
+    Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/setup_win.ps1" -OutFile "setup_win.ps1"
     .\setup_win.ps1 -CLAIM_REWARD_ADDRESS "0x-Fill-in-your-reward-address-here"
     ```
 

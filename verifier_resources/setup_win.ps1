@@ -75,7 +75,7 @@ if (-not ($oldPath -like "*$newPath*")) {
 # Part 3: download verifier files
 cd $env:USERPROFILE
 New-Item -ItemType Directory -Force -Path "cysic-verifier"
-Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/verifier_win_x86_64.exe" -OutFile "cysic-verifier\verifier.exe"
-Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/libzkp.dll" -OutFile "cysic-verifier\zkp.dll"
-Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/rsp.dll" -OutFile "cysic-verifier\rsp.dll"
-Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v1.0.0/run_win.ps1" -OutFile "cysic-verifier\start.ps1"
+Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/verifier_win_x86_64.exe" -OutFile "cysic-verifier\verifier.exe"
+Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libzkp.dll" -OutFile "cysic-verifier\zkp.dll"
+Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/rsp.dll" -OutFile "cysic-verifier\rsp.dll"
+Invoke-WebRequest -Uri "https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/run_win.ps1" -OutFile "cysic-verifier\start.ps1"
