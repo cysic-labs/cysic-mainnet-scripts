@@ -1,4 +1,9 @@
+SHELL := /bin/bash
+
 DEFAULT_GOAL: release
+
+VERSION ?=
+RELEASE_NOTES_FILE ?=
 
 copy:
 	@echo "============== begin copy to github_release =============="
@@ -12,6 +17,7 @@ release: copy
 	@bash ./calculate_sha256.sh > sha256sum.txt
 	@echo "============== end release to github =============="
 
+auto-release:
+	@bash ./auto_release.sh "$(VERSION)" "$(RELEASE_NOTES_FILE)"
 
-
-.PHONY: release copy
+.PHONY: release copy auto-release
