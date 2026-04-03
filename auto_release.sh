@@ -143,17 +143,44 @@ else
   exit 1
 fi
 
-for file in github_release/*; do
+upload_asset() {
+  local file="$1"
+  local name
+  local response_file
+  local http_code
+
   name="$(basename "$file")"
-  curl -sSfL \
+  response_file="/tmp/cysic-upload-${name}.json"
+
+  echo "Uploading asset: ${name}"
+  http_code="$(curl --progress-bar --retry 3 --retry-delay 2 \
+    --connect-timeout 30 --max-time 3600 \
+    -sS -o "$response_file" -w '%{http_code}' \
     -X POST \
     -H "Authorization: Basic ${auth}" \
     -H 'Accept: application/vnd.github+json' \
     -H 'X-GitHub-Api-Version: 2022-11-28' \
     -H 'Content-Type: application/octet-stream' \
     --data-binary @"$file" \
-    "${upload_url}?name=${name}" \
-    > /dev/null
+    "${upload_url}?name=${name}")"
+
+  case "$http_code" in
+    201)
+      echo "Uploaded asset: ${name}"
+      ;;
+    422)
+      echo "Asset already exists on release: ${name}"
+      ;;
+    *)
+      echo "Failed to upload asset ${name}, HTTP ${http_code}"
+      cat "$response_file"
+      exit 1
+      ;;
+  esac
+}
+
+for file in github_release/*; do
+  upload_asset "$file"
 done
 
 local_count="$(ls -1 github_release | wc -l | tr -d ' ')"
