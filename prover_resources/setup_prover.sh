@@ -17,7 +17,7 @@ curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/down
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libdarwin_prover.so >~/cysic-prover/libzkp.so
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/libcysnet_monitor.so >~/cysic-prover/libcysnet_monitor.so
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/librsp_prover.so >~/cysic-prover/librsp.so
-curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/venus-prover-community-v0.1.16/install_and_start_prover.sh >~/cysic-prover/install_and_start_prover.sh
+curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v2.0.1/install_and_start_prover.sh >~/cysic-prover/install_and_start_prover.sh
 curl -L https://github.com/cysic-labs/cysic-mainnet-scripts/releases/latest/download/imetadata.bin >~/cysic-prover/imetadata.bin
 
 # 第二段命令：创建配置文件

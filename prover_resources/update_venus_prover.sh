@@ -4,7 +4,7 @@ set -euo pipefail
 PROVER_HOME="${PROVER_HOME:-$HOME/cysic-prover}"
 PROVER_URL="${PROVER_URL:-https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v2.0.1/prover_linux}"
 CONFIG_PATH="${CONFIG_PATH:-$PROVER_HOME/config.yaml}"
-INSTALL_AND_START_URL="${INSTALL_AND_START_URL:-https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/venus-prover-community-v0.1.16/install_and_start_prover.sh}"
+INSTALL_AND_START_URL="${INSTALL_AND_START_URL:-https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v2.0.1/install_and_start_prover.sh}"
 INSTALL_AND_START_PATH="${INSTALL_AND_START_PATH:-$PROVER_HOME/install_and_start_prover.sh}"
 
 require_file() {
