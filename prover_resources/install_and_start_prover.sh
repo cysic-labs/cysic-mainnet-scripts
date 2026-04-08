@@ -22,6 +22,16 @@ if ! command -v apt-get >/dev/null 2>&1; then
   exit 1
 fi
 
+if [[ "$(id -u)" -eq 0 ]]; then
+  SUDO=()
+else
+  if ! command -v sudo >/dev/null 2>&1; then
+    echo "sudo not found. Run this script as root or install sudo." >&2
+    exit 1
+  fi
+  SUDO=(sudo)
+fi
+
 download_file() {
   local url="$1"
   local dst="$2"
@@ -74,8 +84,8 @@ select_backend_bundle() {
   esac
 }
 
-sudo apt-get update
-sudo apt-get install -y \
+"${SUDO[@]}" apt-get update
+"${SUDO[@]}" apt-get install -y \
   ca-certificates curl wget tar zstd \
   libssl3 libstdc++6 libgmp10 libsodium23 libomp5 \
   openmpi-bin libopenmpi3 libopenmpi-dev libhwloc15 \
@@ -83,11 +93,11 @@ sudo apt-get install -y \
 
 if ! ldconfig -p | rg -q 'libcudart.so.13'; then
   wget -q https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
-  sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
+  "${SUDO[@]}" mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
   wget -q https://developer.download.nvidia.com/compute/cuda/13.0.0/local_installers/cuda-repo-ubuntu2404-13-0-local_13.0.0-580.65.06-1_amd64.deb
-  sudo dpkg -i cuda-repo-ubuntu2404-13-0-local_13.0.0-580.65.06-1_amd64.deb
-  sudo cp /var/cuda-repo-ubuntu2404-13-0-local/cuda-*-keyring.gpg /usr/share/keyrings/
-  sudo apt-get update
+  "${SUDO[@]}" dpkg -i cuda-repo-ubuntu2404-13-0-local_13.0.0-580.65.06-1_amd64.deb
+  "${SUDO[@]}" cp /var/cuda-repo-ubuntu2404-13-0-local/cuda-*-keyring.gpg /usr/share/keyrings/
+  "${SUDO[@]}" apt-get update
   cuda_packages=(cuda-toolkit-13-0)
   case "$INSTALL_NVIDIA_DRIVERS" in
     always)
@@ -108,7 +118,7 @@ if ! ldconfig -p | rg -q 'libcudart.so.13'; then
       exit 2
       ;;
   esac
-  sudo apt-get install -y "${cuda_packages[@]}"
+  "${SUDO[@]}" apt-get install -y "${cuda_packages[@]}"
   if [[ " ${cuda_packages[*]} " == *" cuda-drivers "* ]]; then
     echo "CUDA toolkit and NVIDIA drivers installed. A reboot may be required."
   else
