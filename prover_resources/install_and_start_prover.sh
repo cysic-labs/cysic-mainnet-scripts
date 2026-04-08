@@ -3,8 +3,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VENUS_DIR="${VENUS_DIR:-$HOME/venus_v0_1_6}"
-ZISK_BUNDLE_URL="${ZISK_BUNDLE_URL:-https://public.prover.xyz/vadcop_final/venus_v0_1_6_zisk_bundle}"
-ZISK_BUNDLE_SHA256_URL="${ZISK_BUNDLE_SHA256_URL:-https://public.prover.xyz/vadcop_final/venus_v0_1_6_zisk_bundle.sha256}"
+ZISK_BUNDLE_URL="${ZISK_BUNDLE_URL:-https://public.prover.xyz/vadcop_final/venus_v0_1_6_backend_with_runtime.tar.zst}"
+ZISK_BUNDLE_SHA256_URL="${ZISK_BUNDLE_SHA256_URL:-https://public.prover.xyz/vadcop_final/venus_v0_1_6_backend_with_runtime.tar.zst.sha256}"
 BACKEND_BUNDLE_SM75_URL="${BACKEND_BUNDLE_SM75_URL:-https://public.prover.xyz/vadcop_final/venus_backend_sm_75.tar.zst}"
 BACKEND_BUNDLE_SM86_URL="${BACKEND_BUNDLE_SM86_URL:-https://public.prover.xyz/vadcop_final/venus_backend_sm_86.tar.zst}"
 BACKEND_BUNDLE_SM89_URL="${BACKEND_BUNDLE_SM89_URL:-https://public.prover.xyz/vadcop_final/venus_backend_sm_89.tar.zst}"
