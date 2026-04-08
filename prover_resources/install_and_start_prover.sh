@@ -42,6 +42,69 @@ download_file() {
   fi
 }
 
+download_or_copy_file() {
+  local src="$1"
+  local dst="$2"
+
+  case "$src" in
+    http://*|https://*) download_file "$src" "$dst" ;;
+    file://*) cp "${src#file://}" "$dst" ;;
+    *) cp "$src" "$dst" ;;
+  esac
+}
+
+checksum_value() {
+  local sha_file="$1"
+  awk '{print $1}' "$sha_file" | head -n 1
+}
+
+verify_cached_bundle() {
+  local bundle_file="$1"
+  local sha_file="$2"
+  local label="$3"
+  local expected_sha
+  local actual_sha
+
+  expected_sha="$(checksum_value "$sha_file")"
+  actual_sha="$(sha256sum "$bundle_file" | awk '{print $1}')"
+  if [[ -z "$expected_sha" || "$expected_sha" != "$actual_sha" ]]; then
+    echo "${label} checksum mismatch" >&2
+    echo "expected: ${expected_sha:-<empty>}" >&2
+    echo "actual:   $actual_sha" >&2
+    return 1
+  fi
+
+  echo "Verified ${label,,} checksum: $actual_sha"
+}
+
+prepare_cached_bundle() {
+  local bundle_url="$1"
+  local sha_url="$2"
+  local bundle_file="$3"
+  local sha_file="$4"
+  local label="$5"
+  local tmp_bundle
+
+  echo "Refreshing ${label,,} checksum file..."
+  download_or_copy_file "$sha_url" "$sha_file"
+
+  if [[ -f "$bundle_file" ]]; then
+    if verify_cached_bundle "$bundle_file" "$sha_file" "$label"; then
+      echo "Using cached ${label,,}: $bundle_file"
+      return
+    fi
+    echo "Cached ${label,,} is outdated or invalid. Re-downloading..."
+  else
+    echo "${label} not found locally. Downloading..."
+  fi
+
+  tmp_bundle="${bundle_file}.download"
+  rm -f "$tmp_bundle"
+  download_or_copy_file "$bundle_url" "$tmp_bundle"
+  mv "$tmp_bundle" "$bundle_file"
+  verify_cached_bundle "$bundle_file" "$sha_file" "$label"
+}
+
 has_nvidia_driver() {
   command -v nvidia-smi >/dev/null 2>&1 || ldconfig -p | rg -q 'libcuda\.so'
 }
@@ -166,38 +229,16 @@ if ! is_backend_ready; then
   gpu_model="$(detect_gpu_model)"
   backend_bundle_url="$(select_backend_bundle "$gpu_model")"
   backend_bundle_sha256_url="${VENUS_BUNDLE_SHA256_URL:-${backend_bundle_url}.sha256}"
+  backend_bundle_name="$(basename "$backend_bundle_url")"
+  backend_sha_name="$(basename "$backend_bundle_sha256_url")"
+  archive="$HOME/$backend_bundle_name"
+  sha256_file="$HOME/$backend_sha_name"
   echo "Detected GPU model: $gpu_model"
   echo "Using backend bundle: $backend_bundle_url"
 
   tmp_dir="$(mktemp -d)"
   trap 'rm -rf "$tmp_dir"' EXIT
-  archive="$tmp_dir/venus_backend_bundle"
-  sha256_file="$tmp_dir/venus_backend_bundle.sha256"
-
-  case "$backend_bundle_url" in
-    http://*|https://*)
-      if [[ "$DOWNLOAD_TOOL" == "wget" ]]; then wget -O "$archive" "$backend_bundle_url"; else curl -L --fail --output "$archive" "$backend_bundle_url"; fi
-      ;;
-    file://*) cp "${backend_bundle_url#file://}" "$archive" ;;
-    *) cp "$backend_bundle_url" "$archive" ;;
-  esac
-
-  case "$backend_bundle_sha256_url" in
-    http://*|https://*)
-      if [[ "$DOWNLOAD_TOOL" == "wget" ]]; then wget -O "$sha256_file" "$backend_bundle_sha256_url"; else curl -L --fail --output "$sha256_file" "$backend_bundle_sha256_url"; fi
-      ;;
-    file://*) cp "${backend_bundle_sha256_url#file://}" "$sha256_file" ;;
-    *) [[ -f "$backend_bundle_sha256_url" ]] && cp "$backend_bundle_sha256_url" "$sha256_file" ;;
-  esac
-
-  if [[ -f "$sha256_file" ]]; then
-    expected_sha="$(awk '{print $1}' "$sha256_file" | head -n 1)"
-    actual_sha="$(sha256sum "$archive" | awk '{print $1}')"
-    [[ -n "$expected_sha" && "$expected_sha" == "$actual_sha" ]] || { echo "Backend bundle checksum mismatch" >&2; echo "expected: ${expected_sha:-<empty>}" >&2; echo "actual:   $actual_sha" >&2; exit 2; }
-    echo "Verified backend bundle checksum: $actual_sha"
-  else
-    echo "No backend bundle checksum file found; skipping checksum verification."
-  fi
+  prepare_cached_bundle "$backend_bundle_url" "$backend_bundle_sha256_url" "$archive" "$sha256_file" "Backend bundle"
 
   extract_dir="$tmp_dir/extracted"
   mkdir -p "$extract_dir"
@@ -223,37 +264,16 @@ if ! is_backend_ready; then
 fi
 
 if ! is_pk_ready; then
+  zisk_bundle_name="$(basename "$ZISK_BUNDLE_URL")"
+  zisk_sha_name="$(basename "$ZISK_BUNDLE_SHA256_URL")"
+  archive_pk="$HOME/$zisk_bundle_name"
+  sha256_file_pk="$HOME/$zisk_sha_name"
   tmp_dir_pk="$(mktemp -d)"
   trap 'rm -rf "$tmp_dir_pk"' EXIT
-  archive_pk="$tmp_dir_pk/zisk_bundle"
-  sha256_file_pk="$tmp_dir_pk/zisk_bundle.sha256"
   extract_dir_pk="$tmp_dir_pk/extracted"
   mkdir -p "$extract_dir_pk"
 
-  case "$ZISK_BUNDLE_URL" in
-    http://*|https://*)
-      if [[ "$DOWNLOAD_TOOL" == "wget" ]]; then wget -O "$archive_pk" "$ZISK_BUNDLE_URL"; else curl -L --fail --output "$archive_pk" "$ZISK_BUNDLE_URL"; fi
-      ;;
-    file://*) cp "${ZISK_BUNDLE_URL#file://}" "$archive_pk" ;;
-    *) cp "$ZISK_BUNDLE_URL" "$archive_pk" ;;
-  esac
-
-  case "$ZISK_BUNDLE_SHA256_URL" in
-    http://*|https://*)
-      if [[ "$DOWNLOAD_TOOL" == "wget" ]]; then wget -O "$sha256_file_pk" "$ZISK_BUNDLE_SHA256_URL"; else curl -L --fail --output "$sha256_file_pk" "$ZISK_BUNDLE_SHA256_URL"; fi
-      ;;
-    file://*) cp "${ZISK_BUNDLE_SHA256_URL#file://}" "$sha256_file_pk" ;;
-    *) [[ -f "$ZISK_BUNDLE_SHA256_URL" ]] && cp "$ZISK_BUNDLE_SHA256_URL" "$sha256_file_pk" ;;
-  esac
-
-  if [[ -f "$sha256_file_pk" ]]; then
-    expected_sha="$(awk '{print $1}' "$sha256_file_pk" | head -n 1)"
-    actual_sha="$(sha256sum "$archive_pk" | awk '{print $1}')"
-    [[ -n "$expected_sha" && "$expected_sha" == "$actual_sha" ]] || { echo "Zisk bundle checksum mismatch" >&2; echo "expected: ${expected_sha:-<empty>}" >&2; echo "actual:   $actual_sha" >&2; exit 2; }
-    echo "Verified zisk bundle checksum: $actual_sha"
-  else
-    echo "No zisk bundle checksum file found; skipping checksum verification."
-  fi
+  prepare_cached_bundle "$ZISK_BUNDLE_URL" "$ZISK_BUNDLE_SHA256_URL" "$archive_pk" "$sha256_file_pk" "Zisk bundle"
 
   tar --zstd -xf "$archive_pk" -C "$extract_dir_pk"
   shopt -s dotglob nullglob
