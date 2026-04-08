@@ -11,7 +11,13 @@ require_file() {
   local path="$1"
   local label="$2"
   if [[ ! -f "$path" ]]; then
-    echo "$label not found: $path" >&2
+    if [[ "$label" == "config.yaml" ]]; then
+      echo "config.yaml not found: $path" >&2
+      echo "update_venus_prover.sh is an upgrade script for an existing prover installation." >&2
+      echo "Please run setup_prover.sh first to create $path, then rerun update_venus_prover.sh." >&2
+    else
+      echo "$label not found: $path" >&2
+    fi
     exit 1
   fi
 }
