@@ -148,8 +148,7 @@ if [[ ! -x "$PROVER_BIN" ]]; then
 fi
 
 # === Start prover0 ===
-CUDA_VISIBLE_DEVICES=0 \
-  VENUS_PROVER_GRPC_PORT="$PORT" \
+VENUS_PROVER_GRPC_PORT="$PORT" \
   HTTP_RPC_URL="$ETH_PROOF_ENDPOINT" \
   VENUS_OUT_DIR="$VENUS_OUT_DIR/prover_$PORT" \
   ASM_UNLOCK=true \
