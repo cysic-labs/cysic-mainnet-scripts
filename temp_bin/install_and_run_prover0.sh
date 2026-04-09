@@ -2,9 +2,12 @@
 set -euo pipefail
 
 # Configurable inputs
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUNDLE_URL="${BUNDLE_URL:-https://public.prover.xyz/vadcop_final/vadcop_bundle_portable_v2.tar.zst}"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/venus_bundle}"
 PORT="${PORT:-7000}"
+PROVER_RELEASE_BASE_URL="${PROVER_RELEASE_BASE_URL:-https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/venus-prover-community-v0.1.16}"
+PROVER_BIN="${PROVER_BIN:-$SCRIPT_DIR/venus_prover_server}"
 CUDA_INSTALLED=0
 
 if [[ -z "${ETH_PROOF_ENDPOINT:-}" ]]; then
@@ -138,13 +141,18 @@ if [[ "$missing" -ne 0 ]]; then
   exit 2
 fi
 
+# === Download prover server binary if missing ===
+if [[ ! -x "$PROVER_BIN" ]]; then
+  curl -fL "$PROVER_RELEASE_BASE_URL/venus_prover_server" -o "$PROVER_BIN"
+  chmod +x "$PROVER_BIN"
+fi
+
 # === Start prover0 ===
-PROVER_BIN="$BUNDLE_ROOT/bin/venus-prover-grpc"
 CUDA_VISIBLE_DEVICES=0 \
   VENUS_PROVER_GRPC_PORT="$PORT" \
   HTTP_RPC_URL="$ETH_PROOF_ENDPOINT" \
   VENUS_OUT_DIR="$VENUS_OUT_DIR/prover_$PORT" \
-  VENUS_INPUT_FALLBACK_PATH="$BUNDLE_ROOT/fallback/input_gen_fallback.bin" \
+  ASM_UNLOCK=true \
   RUST_LOG=info \
   "$PROVER_BIN" &
 
