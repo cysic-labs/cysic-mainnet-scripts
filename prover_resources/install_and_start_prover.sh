@@ -150,7 +150,7 @@ select_backend_bundle() {
 "${SUDO[@]}" apt-get update
 "${SUDO[@]}" apt-get install -y \
   ca-certificates curl wget tar zstd \
-  libssl3 libstdc++6 libgmp10 libsodium23 libomp5 \
+  libssl3 libstdc++6 libgmp10 libgmp-dev libsodium23 libomp5 \
   openmpi-bin libopenmpi3 libopenmpi-dev libhwloc15 \
   libz1 libevent-2.1-7 libevent-pthreads-2.1-7 libudev1 libcap2 ripgrep build-essential binutils
 
@@ -298,7 +298,7 @@ fi
 
 link_zisk_runtime
 mkdir -p "$VENUS_DIR/tmp"
-cmd=(env VENUS_PROVER_GRPC_PORT="$PORT" VENUS_DIR="$VENUS_DIR" VENUS_OUT_DIR="$VENUS_DIR/tmp" RUST_LOG="${RUST_LOG:-info}")
+cmd=(env VENUS_PROVER_GRPC_PORT="$PORT" VENUS_DIR="$VENUS_DIR" VENUS_OUT_DIR="$VENUS_DIR/tmp" ASM_UNLOCK="${ASM_UNLOCK:-true}" RUST_LOG="${RUST_LOG:-info}")
 if [[ -n "$GPU" ]]; then cmd+=(CUDA_VISIBLE_DEVICES="$GPU"); fi
 cmd+=("$PROVER_SERVER_BIN")
 exec "${cmd[@]}"
