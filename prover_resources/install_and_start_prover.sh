@@ -14,6 +14,7 @@ PORT="${PORT:-7000}"
 GPU="${GPU:-}"
 INSTALL_NVIDIA_DRIVERS="${INSTALL_NVIDIA_DRIVERS:-auto}"
 PROVER_RELEASE_BASE_URL="${PROVER_RELEASE_BASE_URL:-https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/venus-prover-community-v0.1.16}"
+CARGO_ZISK_RELEASE_BASE_URL="${CARGO_ZISK_RELEASE_BASE_URL:-https://github.com/cysic-labs/cysic-mainnet-scripts/releases/download/v2.0.1}"
 PROVER_SERVER_BIN="${PROVER_SERVER_BIN:-$SCRIPT_DIR/venus_prover_server}"
 PROVER_DEMO_BIN="${PROVER_DEMO_BIN:-$SCRIPT_DIR/venus_prover_demo}"
 
@@ -124,6 +125,70 @@ detect_gpu_model() {
   nvidia-smi "${query_args[@]}" | head -n 1
 }
 
+detect_compute_capability() {
+  local query_args=(--query-gpu=compute_cap --format=csv,noheader)
+
+  if ! command -v nvidia-smi >/dev/null 2>&1; then
+    echo "nvidia-smi not found. Unable to detect compute capability." >&2
+    exit 2
+  fi
+
+  if [[ -n "$GPU" ]]; then
+    query_args=(-i "$GPU" "${query_args[@]}")
+  fi
+
+  nvidia-smi "${query_args[@]}" 2>/dev/null | head -n 1 | tr -d '[:space:]'
+}
+
+select_cargo_zisk_asset() {
+  local capability="$1"
+  local gpu_model="$2"
+
+  case "$capability" in
+    7.5|7.5*) printf '%s\n' "cargo-zisk-sm75"; return 0 ;;
+    8.6|8.6*) printf '%s\n' "cargo-zisk-sm86"; return 0 ;;
+    8.9|8.9*) printf '%s\n' "cargo-zisk-sm89"; return 0 ;;
+    12.0|12.0*) printf '%s\n' "cargo-zisk-sm120"; return 0 ;;
+  esac
+
+  case "$gpu_model" in
+    *"RTX 20"*|*"20"*"90"*|*"20"*"80"*|*"20"*"70"*|*"20"*"60"*|*"20"*"50"*|*"T4"*)
+      printf '%s\n' "cargo-zisk-sm75"
+      ;;
+    *"RTX 30"*|*"30"*"90"*|*"30"*"80"*|*"30"*"70"*|*"30"*"60"*|*"30"*"50"*|*"A10"*|*"A40"*|*"A30"*)
+      printf '%s\n' "cargo-zisk-sm86"
+      ;;
+    *"RTX 40"*|*"40"*"90"*|*"40"*"80"*|*"40"*"70"*|*"40"*"60"*|*"40"*"50"*|*"L4"*|*"L40"*)
+      printf '%s\n' "cargo-zisk-sm89"
+      ;;
+    *"RTX 50"*|*"50"*"90"*|*"50"*"80"*|*"50"*"70"*|*"50"*"60"*|*"50"*"50"*)
+      printf '%s\n' "cargo-zisk-sm120"
+      ;;
+    *)
+      echo "Unsupported or unknown GPU model for cargo-zisk: $gpu_model" >&2
+      exit 2
+      ;;
+  esac
+}
+
+update_cargo_zisk() {
+  local gpu_model="$1"
+  local capability="$2"
+  local asset_name
+  local target_path="$VENUS_DIR/target/release/cargo-zisk"
+  local tmp_file
+
+  asset_name="$(select_cargo_zisk_asset "$capability" "$gpu_model")"
+  tmp_file="$(mktemp)"
+  trap 'rm -f "$tmp_file"' EXIT
+
+  echo "Updating cargo-zisk with asset: $asset_name"
+  download_file "$CARGO_ZISK_RELEASE_BASE_URL/$asset_name" "$tmp_file"
+  chmod +x "$tmp_file"
+  mv "$tmp_file" "$target_path"
+  trap - EXIT
+}
+
 select_backend_bundle() {
   local gpu_model="$1"
 
@@ -222,11 +287,13 @@ link_zisk_runtime() {
   ln -sfn "$VENUS_DIR/target/release/libziskclib.a" "$HOME/.zisk/bin/libziskclib.a"
 }
 
+gpu_model="$(detect_gpu_model)"
+compute_capability="$(detect_compute_capability || true)"
+
 if ! is_backend_ready; then
   parent_dir="$(dirname "$VENUS_DIR")"
   mkdir -p "$parent_dir"
 
-  gpu_model="$(detect_gpu_model)"
   backend_bundle_url="$(select_backend_bundle "$gpu_model")"
   backend_bundle_sha256_url="${VENUS_BUNDLE_SHA256_URL:-${backend_bundle_url}.sha256}"
   backend_bundle_name="$(basename "$backend_bundle_url")"
@@ -297,6 +364,12 @@ if ! is_pk_ready; then
 fi
 
 link_zisk_runtime
+if [[ -n "$compute_capability" ]]; then
+  echo "Detected compute capability: $compute_capability"
+else
+  echo "Compute capability query unavailable; using GPU name fallback for cargo-zisk"
+fi
+update_cargo_zisk "$gpu_model" "$compute_capability"
 mkdir -p "$VENUS_DIR/tmp"
 cmd=(env VENUS_PROVER_GRPC_PORT="$PORT" VENUS_DIR="$VENUS_DIR" VENUS_OUT_DIR="$VENUS_DIR/tmp" ASM_UNLOCK="${ASM_UNLOCK:-true}" RUST_LOG="${RUST_LOG:-info}")
 if [[ -n "$GPU" ]]; then cmd+=(CUDA_VISIBLE_DEVICES="$GPU"); fi
